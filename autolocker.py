@@ -113,7 +113,7 @@ def check_fuellock(accessToken, deviceSecret, DEVICE_ID):
 
     # Send the request and get the response into a JSON array
     response = requests.get(functions.BASE_URL + "FuelLock/List", headers=headers)
-    returnContent = json.loads(response.content)
+    returnContent = json.loads(response.content.decode('utf-8'))
 
 
     config = configparser.ConfigParser()
@@ -231,7 +231,7 @@ def start_lockin():
 
                     # Send through the request and get the response
                     response = requests.post(functions.BASE_URL + "FuelLock/Confirm", data=payload, headers=headers)
-                    returnContent = json.loads(response.content)
+                    returnContent = json.loads(response.content.decode('utf-8'))
 
                     try:
                         if(returnContent['Message']):
