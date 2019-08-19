@@ -172,7 +172,7 @@ def lockedPrices():
                'X-DeviceSecret':session['deviceSecret']}
                
     response = requests.get(BASE_URL + "FuelLock/List", headers=headers)
-    returnContent = json.loads(response.content)
+    returnContent = json.loads(response.content.decode('utf-8'))
 
     # An error occours if we have never locked in a price before
     try:
