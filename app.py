@@ -138,7 +138,7 @@ def login():
         response = requests.post(functions.BASE_URL + "account/login", data=payload, headers=headers)
 
         returnHeaders = response.headers
-        returnContent = json.loads(response.text)
+        returnContent = json.loads(response.text.decode('utf-8'))
 
         try:
             # If there was an error logging in, redirect to the index page with the 7Eleven response
@@ -354,7 +354,7 @@ def lockin():
             returnContent = response.content
 
             # Move the response json into an array so we can read it
-            returnContent = json.loads(returnContent)
+            returnContent = json.loads(returnContent.decode('utf-8'))
 
             # If there is a fuel lock already in place we get an error!
             try:
@@ -406,7 +406,7 @@ def lockin():
         response = requests.post(functions.BASE_URL + "FuelLock/Confirm", data=payload, headers=headers)
 
         # Get the response into a json array
-        returnContent = json.loads(response.content)
+        returnContent = json.loads(response.content.decode('utf-8'))
         try:
             # Check if the response was an error message
             if(returnContent['Message']):
